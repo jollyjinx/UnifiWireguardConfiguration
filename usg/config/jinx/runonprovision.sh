@@ -2,10 +2,12 @@
 
 logger "runonprovision.sh called"
 
-if [[ ! -e  /config/scripts/post-config.d/start.sh ]];
+if [[ ! -e /config/scripts/post-config.d/start.sh ]];
 then
 	/bin/ln -s /config/jinx/start.sh /config/scripts/post-config.d/
 	/config/scripts/post-config.d/start.sh runonprovision |logger -t start.sh
+else
+	/config/scripts/post-config.d/start.sh |logger -t start.sh
 fi
 
 readonly logFile="/var/log/runonprovision.log"
