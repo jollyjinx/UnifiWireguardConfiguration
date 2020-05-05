@@ -1,0 +1,15 @@
+{
+  "system": {
+    "task-scheduler": {
+      "task": {
+        "runonprovision": {
+          "executable": {
+            "path": "/bin/bash",
+            "arguments": "-c &quot;if [[ -e /config/jinx/runonprovision.sh ]]; then /config/jinx/runonprovision.sh; fi&quot;"
+          },
+          "interval": "5m"
+        }
+      }
+    }
+  }
+}
