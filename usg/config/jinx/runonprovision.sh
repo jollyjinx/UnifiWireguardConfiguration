@@ -1,4 +1,4 @@
-#!/bin/vbash
+#!/bin/bash
 
 logger "runonprovision.sh called"
 
