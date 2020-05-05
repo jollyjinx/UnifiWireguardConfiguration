@@ -23,14 +23,5 @@ set interfaces wireguard wg0 route-allowed-ips false
 set interfaces wireguard wg0 peer MY_OTHER_NETWORK_PUBLIC_KEY= allowed-ips 192.168.2.0/24
 set interfaces wireguard wg0 peer MY_OTHER_NETWORK_PUBLIC_KEY = endpoint 'DYNDNSADDRESS.EXAMPLE.COM.:51820'
 set interfaces wireguard wg0 peer MY_OTHER_NETWORK_PUBLIC_KEY = persistent-keepalive 60
-
 commit
 save
-
-#
-# as long as wireguard can't be deleted when route-allowed-ips true is set
-# we need to use this workaround to route between networks.
-#
-sudo /sbin/route add -net 192.168.2.0/24 wg0
-/bin/ping -c 1 192.168.2.1
-

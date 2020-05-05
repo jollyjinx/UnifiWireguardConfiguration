@@ -1,9 +1,12 @@
 #!/bin/vbash
-
-cd /config/jinx/wireguard
-# cd `dirname $0`
+#
+# script is called on startup with argument runonprovision if run after provision
+# with no argument during normal boot.
+#
 
 echo "wireguard: script started"
+
+cd /config/jinx/wireguard
 
 if [[ ! -e /usr/bin/wg ]];
 then
@@ -11,24 +14,28 @@ then
 	export DEBIAN_FRONTEND=noninteractive
 	
 	# https://github.com/WireGuard/wireguard-vyatta-ubnt
-	# sudo /usr/bin/dpkg -i wireguard-ugw3-1.0.20200401-1.deb </dev/null
-	# sudo /usr/bin/dpkg -i wireguard-ugw3-0.0.20191219-2.deb </dev/null
 	sudo /usr/bin/dpkg -i ugw3-v1-v1.0.20200429-v1.0.20200319.deb
 	
 else
 	echo "wireguard: already installed, good"
 fi
 
+
 if [[ -e /usr/bin/wg ]];
 then
 	echo "wireguard: configuring"
-
-	./wg.commands
-
-else
-	echo "wireguard: missing "
-fi
-echo "wireguard: finished"
 	
-
-
+	if [[ "$1" = "runonprovision" ]];
+	then
+		echo "wireguard: config commands"
+		
+		./wg.runonprovision.sh
+	fi
+	echo "wireguard: start commands"
+	
+	./wg.start.sh
+	
+	echo "wireguard: finished"
+else	
+	echo "wireguard: missing /usr/bin/wg"
+fi

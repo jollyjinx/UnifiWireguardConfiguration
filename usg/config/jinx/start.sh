@@ -1,15 +1,21 @@
-#!/bin/sh
+#!/bin/vbash
 
 readonly logFile="/var/log/jinx-start.log"
 
-cd /config/jinx/
-#nohup /config/jinx/presencedetection.sh	>${logFile} 2>&1 </dev/null &
-#nohup /config/jinx/updatedyndns.sh >/dev/null 2>&1 </dev/null &
-#nohup /config/jinx/update-dhcpv6-pd.sh	>/dev/null 2>&1 </dev/null &
-#nohup /config/jinx/update-ulas.sh >/dev/null 2>&1 </dev/null &
-#nohup /config/jinx/updatedyndnsAndDHCPV6.sh >/dev/null 2>&1 </dev/null &
-#nohup /config/jinx/arptest.sh >arpout.`date -Is`.out 2>&1 </dev/null &
+echo "start.sh started with argument: $1" >> ${logFile}
 
-/sbin/route add -net 192.168.2.0/24 wg0
-/bin/ping -c 1 192.168.2.1
 
+if [[ -e /config/jinx/wireguard/wireguard.sh ]];
+then
+	/config/jinx/wireguard/wireguard.sh "$1" >> ${logFile}
+fi
+
+if [[ -e /config/jinx/homeautomation/presencedetection.sh ]];
+then
+	/config/jinx/homeautomation/presencedetection.sh >> ${logFile}
+fi
+
+if [[ -e /config/jinx/updatedyndns.sh ]];
+then
+	/config/jinx/updatedyndns.sh >> ${logFile}
+fi
