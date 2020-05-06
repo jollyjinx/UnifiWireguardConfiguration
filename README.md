@@ -1,4 +1,4 @@
-# Wireguard Unifi Configuration
+# Jolly's Wireguard Unifi Configuration
 
 Here you find my unifi configuration scripts including wireguard. 
 
