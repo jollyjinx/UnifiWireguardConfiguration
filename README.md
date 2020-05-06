@@ -1,8 +1,8 @@
-# Jolly's Wireguard UniFi Configuration
+# Jolly's UniFi and Wireguard Configuration
 
-Here you find my UniFi configuration scripts including wireguard. 
+Here you find my UniFi configuration scripts including Wireguard. 
 
-Problem with wireguard is, that when you have the configuration in config.gateway.json you no longer can upgrade the usg and when you have setup Wireguard between two sites you can't even provision any more. 
+Problem with Wireguard is, that when you have the configuration in config.gateway.json you no longer can upgrade the USG and when you have setup Wireguard between two sites you can't even provision any more. 
 
 That's why I created my own setup for running Wireguard on UniFi. Nothing will prevent the USG from booting. You can upgrade or even reset a USG and it can be adopted without problems.
 
