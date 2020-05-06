@@ -1,16 +1,18 @@
 #!/bin/bash
 
-logger "runonprovision.sh called"
+readonly logFile="/var/log/jinx-provision.log"
+
+/bin/date >> ${logFile}
+echo "runonprovision.sh started"
 
 if [[ ! -e /config/scripts/post-config.d/start.sh ]];
 then
 	/bin/ln -s /config/jinx/start.sh /config/scripts/post-config.d/
-	/config/scripts/post-config.d/start.sh runonprovision |logger -t start.sh
+	/config/scripts/post-config.d/start.sh >> ${logFile}
 else
-	/config/scripts/post-config.d/start.sh |logger -t start.sh
+	/config/scripts/post-config.d/start.sh runonprovision >> ${logFile}
 fi
 
-readonly logFile="/var/log/runonprovision.log"
 
 source /opt/vyatta/etc/functions/script-template
 
