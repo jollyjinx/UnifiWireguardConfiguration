@@ -14,5 +14,5 @@ The configuration on the UCK (UniFi Cloud Key) is just starting a script on the 
 - copy the *uck/sites/default/config-gateway.json* inside the uck directory to the correct place on your UCK
 - change firewall settings for to allow the USG to accept Wireguard traffic.
 
-The last step will get the USG provisioned and your wireguard should run then.
+The last step will get the USG provisioned and Wireguard should run then.
 
