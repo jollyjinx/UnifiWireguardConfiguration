@@ -11,7 +11,7 @@ set interfaces wireguard wg0 address 10.0.0.1/24
 set interfaces wireguard wg0 listen-port 51820
 set interfaces wireguard wg0 mtu 1412
 set interfaces wireguard wg0 private-key 'MY PRIVATE KEY BASE64 ENCODED='
-set interfaces wireguard wg0 route-allowed-ips false
+set interfaces wireguard wg0 route-allowed-ips true
 
 #set interfaces wireguard wg0 firewall in name LAN_IN
 #set interfaces wireguard wg0 firewall out name LAN_OUT
