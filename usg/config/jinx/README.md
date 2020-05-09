@@ -10,3 +10,7 @@ This script will be called whenever the USG will be provisioned.
 
 This script will be called with no argument at the end of the boot process and on provisioning with argument *runonprovision* 
 
+## update-dhcpv6-pd.sh
+
+This script fixes a cpu problem with the dhcpv6 prefix daemon occuring when you have pppoe running to get to the internet.
+
