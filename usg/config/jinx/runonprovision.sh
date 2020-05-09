@@ -17,6 +17,13 @@ fi
 source /opt/vyatta/etc/functions/script-template
 
 configure >> ${logFile}
+
+if [[ -n $(sudo ifconfig pppoe0 2>/dev/null) ]];
+then
+	echo "pppoe0 found adding dhcpv6-pd fix" >> ${logFile}
+	set interfaces ethernet eth0 pppoe 0 dhcpv6-pd prefix-only >> ${logFile}
+fi
+
 delete system task-scheduler task runonprovision  >> ${logFile}
 commit >> ${logFile}
 save >> ${logFile}

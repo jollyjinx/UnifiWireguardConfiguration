@@ -19,6 +19,11 @@ then
     nohup /config/jinx/updatedyndns.sh >>${logFile} 2>&1 </dev/null &
 fi
 
+if [[ -n $(sudo ifconfig pppoe0 2>/dev/null) ]] && [[ "$1" != "runonprovision" ]] && [[ -e /config/jinx/update-dhcpv6-pd.sh ]];
+then
+    nohup /config/jinx/update-dhcpv6-pd.sh >>${logFile} 2>&1 </dev/null &
+fi
+    
 
 if [[ -e /config/jinx/wireguard/wireguard.sh ]];
 then
